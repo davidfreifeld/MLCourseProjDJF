@@ -1,0 +1,12 @@
+base
+slidify
+lattice
+ggplot2
+caret
+kernlab
+RANN
+randomForest
+rpart
+rpart.plot
+caTools
+knitr

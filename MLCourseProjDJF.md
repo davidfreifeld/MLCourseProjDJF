@@ -9,7 +9,8 @@ output: html_document
 
 We first read in our data sets (training and testing), and then extract only the variables we want to use. These variables are just the readings from the fitness device, not including the "summary" variables. 
 
-```{r}
+
+```r
 training <- read.csv("pml-training.csv", stringsAsFactors=F)
 testing <- read.csv("pml-testing.csv", stringsAsFactors=F)
 
@@ -30,7 +31,8 @@ train$classe <- as.factor(train$classe)
 
 Now we will build our model. We will use the caret package to perform cross validation of a random forest model:
 
-```{r cache=TRUE, warning=FALSE}
+
+```r
 library(caret)
 #modFit <- train(classe ~ ., data = train, method = "rf")
 #modFit
