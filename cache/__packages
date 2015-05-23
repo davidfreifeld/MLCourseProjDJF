@@ -1,10 +1,13 @@
 base
+<<<<<<< HEAD
 methods
 datasets
 utils
 grDevices
 graphics
 stats
+=======
+>>>>>>> master
 knitr
 lattice
 ggplot2
