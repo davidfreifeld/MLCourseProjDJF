@@ -203,7 +203,7 @@ hr {
 <body>
 <h2>Preprocessing</h2>
 
-<p>We first read in our data sets (training and testing), and then extract only the variables we want to use. These variables are just the readings from the fitness device, not including the &ldquo;summary&rdquo; variables. </p>
+<p>We first read in our data sets (training and testing), and then extract only the variables we want to use. These variables are just the readings from the fitness device, not including the &ldquo;summary&rdquo; variables. We decide to omit the user_name variable because the goal of this study is to be able to predict incorrect weightlifting behaviors, regardless of who is performing them. Similarly, we decided that the timestamp of each observation is not helpful in our analysis.</p>
 
 <pre><code class="r">training &lt;- read.csv(&quot;pml-training.csv&quot;, stringsAsFactors=F)
 testing &lt;- read.csv(&quot;pml-testing.csv&quot;, stringsAsFactors=F)
@@ -226,9 +226,40 @@ train$classe &lt;- as.factor(train$classe)
 <p>Now we will build our model. We will use the caret package to perform cross validation of a random forest model:</p>
 
 <pre><code class="r">library(caret)
-#modFit &lt;- train(classe ~ ., data = train, method = &quot;rf&quot;)
-#modFit
+modFit &lt;- train(classe ~ ., data = train, method = &quot;rf&quot;)
 </code></pre>
+
+<pre><code>## Loading required package: randomForest
+## randomForest 4.6-10
+## Type rfNews() to see new features/changes/bug fixes.
+</code></pre>
+
+<pre><code class="r">modFit
+</code></pre>
+
+<pre><code>## Random Forest 
+## 
+## 19622 samples
+##    52 predictor
+##     5 classes: &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39; 
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## 
+## Summary of sample sizes: 19622, 19622, 19622, 19622, 19622, 19622, ... 
+## 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy   Kappa      Accuracy SD  Kappa SD   
+##    2    0.9928369  0.9909359  0.001338007  0.001691376
+##   27    0.9923227  0.9902853  0.001415289  0.001788122
+##   52    0.9846846  0.9806194  0.003482837  0.004404650
+## 
+## Accuracy was used to select the optimal model using  the largest value.
+## The final value used for the model was mtry = 2.
+</code></pre>
+
+<p>The train function uses random subsampling to perform a cross validation of the model. That is - it splits the data randomly into a training and a test set, creates a model using the training set, and then records the accuracy on the predictions of the test set. We can see that the cross validation of the random forest model settled on an mtry parameter of FILL IN DA BLANK. And it estimated an out-of-sample accuracy of FILL IN DA BLANK. Therefore we would expect an error of approximately FILL IN DA BLANK when making predictions on our test set.</p>
 
 </body>
 

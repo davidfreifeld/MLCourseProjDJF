@@ -7,9 +7,9 @@ output: html_document
 
 ## Preprocessing
 
-We first read in our data sets (training and testing), and then extract only the variables we want to use. These variables are just the readings from the fitness device, not including the "summary" variables. 
+We first read in our data sets (training and testing), and then extract only the variables we want to use. These variables are just the readings from the fitness device, not including the "summary" variables. We decide to omit the user_name variable because the goal of this study is to be able to predict incorrect weightlifting behaviors, regardless of who is performing them. Similarly, we decided that the timestamp of each observation is not helpful in our analysis.
 
-```{r}
+```{r cache=TRUE}
 training <- read.csv("pml-training.csv", stringsAsFactors=F)
 testing <- read.csv("pml-testing.csv", stringsAsFactors=F)
 
@@ -32,7 +32,10 @@ Now we will build our model. We will use the caret package to perform cross vali
 
 ```{r cache=TRUE, warning=FALSE}
 library(caret)
-#modFit <- train(classe ~ ., data = train, method = "rf")
-#modFit
+modFit <- train(classe ~ ., data = train, method = "rf")
+modFit
 ```
+
+The train function uses random subsampling to perform a cross validation of the model. That is - it splits the data randomly into a training and a test set, creates a model using the training set, and then records the accuracy on the predictions of the test set. We can see that the cross validation of the random forest model settled on an mtry parameter of FILL IN DA BLANK. And it estimated an out-of-sample accuracy of FILL IN DA BLANK. Therefore we would expect an error of approximately FILL IN DA BLANK when making predictions on our test set.
+
 
