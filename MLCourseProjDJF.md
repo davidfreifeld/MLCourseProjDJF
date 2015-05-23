@@ -35,15 +35,6 @@ Now we will build our model. We will use the caret package to perform cross vali
 ```r
 library(caret)
 modFit <- train(classe ~ ., data = train, method = "rf")
-```
-
-```
-## Loading required package: randomForest
-## randomForest 4.6-10
-## Type rfNews() to see new features/changes/bug fixes.
-```
-
-```r
 modFit
 ```
 
@@ -70,6 +61,6 @@ modFit
 ## The final value used for the model was mtry = 2.
 ```
 
-The train function uses random subsampling to perform a cross validation of the model. That is - it splits the data randomly into a training and a test set, creates a model using the training set, and then records the accuracy on the predictions of the test set. We can see that the cross validation of the random forest model settled on an mtry parameter of FILL IN DA BLANK. And it estimated an out-of-sample accuracy of FILL IN DA BLANK. Therefore we would expect an error of approximately FILL IN DA BLANK when making predictions on our test set.
+The train function uses random subsampling to perform a cross validation of the model. That is - it splits the data randomly into a training and a test set, creates a model using the training set, and then records the accuracy on the predictions of the test set. We can see that the cross validation of the random forest model settled on an mtry parameter of 2. And it estimated an out-of-sample accuracy of 0.993. Therefore we would expect an error of (best-case) approximately 0.007 when making predictions on our test set.
 
 
